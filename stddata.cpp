@@ -1,51 +1,68 @@
 #include <iostream>
 #include <fstream>
+
 using namespace std;
-class student
+class Student
 {
     int roll_no;
     string name;
     char div;
 
 public:
-    void getdata()
+    void getData()
     {
-        cout << "enter student name :";
+        cout << "Enter student name: ";
         cin >> name;
-        cout << "enter student roll no :";
+        cout << "Enter student roll no: ";
         cin >> roll_no;
-        cout << "enter student div :";
+        cout << "Enter student div: ";
         cin >> div;
     }
-    void showdata()
+    void showData()
     {
-        cout << "Name of student is :" << name << endl;
-        cout << "Roll no. of student is :" << roll_no << endl;
-        cout << "Division of student is :" << div << endl;
+        cout << "Name of student is: " << name << endl;
+        cout << "Roll no. of student is: " << roll_no << endl;
+        cout << "Division of student is: " << div << endl;
+    }
+
+    void writedata(ofstream &file)
+    {
+        file << "-----------------------------" << endl;
+        file << "Name of student is: " << name << endl;
+        file << "Roll no. of student is: " << roll_no << endl;
+        file << "Division of student is: " << div << endl;
+        file << "-----------------------------" << endl;
     }
 };
 int main()
 {
-    student o[4];
-    fstream f;
+    Student students[4];
+    ofstream file;
     int i, n;
-    f.open("Student.txt");
-    cout << "Enter the no. of students :";
+
+    file.open("Student_Data.txt");
+
+    cout << "Enter the no. of students: ";
     cin >> n;
+
     for (i = 0; i < n; i++)
     {
-        cout << "Enter information of student- \n";
-        o[i].getdata();
-        f.write((char *)&o[i], sizeof o[i]);
+        cout << "Enter information of student-" << (i + 1) << ": \n";
+        students[i].getData();
+        students[i].writedata(file);
     }
-    f.close();
-    f.open("Student.txt", ios::in);
-    cout << "Information of student is :\n";
-    for (i = 0; i < n; i++)
+
+    file.close();
+
+    ifstream infile("Student_Data.txt");
+    string line;
+
+    cout << "\nInformation of student is :\n";
+    while (getline(infile, line))
     {
-        f.write((char *)&o[i], sizeof o[i]);
-        o[i].showdata();
+        cout << line << endl;
     }
-    f.close();
+
+    infile.close();
     return 0;
 }
