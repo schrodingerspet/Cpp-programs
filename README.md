@@ -50,3 +50,8 @@ This project is licensed under the "You break it, you buy it" License.
 ---
 
 Remember, in C++, we don't make mistakes. We have "happy little undefined behaviors." 🎨
+
+
+<p align="center">
+    <img src="https://visitcount.itsvg.in/api?id=Cpp-programs&label=Profile%20Views&color=6&icon=1&pretty=true" alt="Profile Views"/>
+</p>
